@@ -17,6 +17,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+
+// Use routes
+app.use('/api/users', userRoutes);
+
 // Test route
 app.get('/', (req, res) => {
   res.json({ 
