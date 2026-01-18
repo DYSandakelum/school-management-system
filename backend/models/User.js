@@ -105,6 +105,22 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Method to generate JWT token
+userSchema.methods.generateAuthToken = function () {
+  const jwt = require('jsonwebtoken');
+  
+  return jwt.sign(
+    { 
+      id: this._id,
+      role: this.role 
+    },
+    process.env.JWT_SECRET,
+    { 
+      expiresIn: process.env.JWT_EXPIRE 
+    }
+  );
+};
+
 // Create and export the model
 const User = mongoose.model('User', userSchema);
 
