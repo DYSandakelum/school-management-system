@@ -1,43 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import './App.css';
-import axios from 'axios';
 
 function App() {
-  const [backendStatus, setBackendStatus] = useState('Checking...');
-  const [backendMessage, setBackendMessage] = useState('');
-
-  useEffect(() => {
-    // Test connection to backend
-    const testConnection = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000');
-        setBackendStatus('✅ Connected');
-        setBackendMessage(response.data.message);
-      } catch (error) {
-        setBackendStatus('❌ Not Connected');
-        setBackendMessage('Make sure backend is running on port 5000');
-      }
-    };
-
-    testConnection();
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>🏫 School Management System</h1>
-        <p>Government School Management Portal</p>
-        <div className="info-box">
-          <h3>Welcome!</h3>
-          <p>Frontend is running on: http://localhost:3000</p>
-          <p>Backend API: http://localhost:5000</p>
-          <div style={{ marginTop: '20px', padding: '15px', background: 'rgba(255,255,255,0.1)', borderRadius: '10px' }}>
-            <p><strong>Backend Status:</strong> {backendStatus}</p>
-            {backendMessage && <p style={{ fontSize: '0.9rem', marginTop: '10px' }}>{backendMessage}</p>}
-          </div>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            {/* Protected Routes */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            
+            {/* Default Route */}
+            <Route path="/" element={<Navigate to="/login" />} />
+          </Routes>
         </div>
-      </header>
-    </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
