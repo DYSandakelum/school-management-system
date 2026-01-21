@@ -59,7 +59,12 @@ function StudentDashboard() {
             <div className="card-icon">📅</div>
             <h3>Attendance</h3>
             <p>Check your attendance record</p>
-            <button className="card-btn">View Attendance</button>
+            <button 
+              className="card-btn"
+              onClick={() => navigate('/attendance')}
+            >
+              View Attendance
+            </button>
           </div>
 
           <div className="dashboard-card">
