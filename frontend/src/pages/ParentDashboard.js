@@ -1,0 +1,102 @@
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import './RoleDashboards.css';
+
+function ParentDashboard() {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  return (
+    <div className="dashboard-container">
+      <header className="dashboard-header parent-header">
+        <div className="header-left">
+          <h1>🏫 School Management System</h1>
+          <span className="role-badge parent-badge">Parent Portal</span>
+        </div>
+        <div className="header-right">
+          <span className="user-name">👤 {user.name}</span>
+          <button onClick={handleLogout} className="btn-logout">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <div className="dashboard-content">
+        <div className="welcome-section">
+          <h2>Welcome, {user.name}! 👨‍👩‍👧‍👦</h2>
+          <p>Monitor your child's academic progress</p>
+        </div>
+
+        <div className="dashboard-grid">
+          <div className="dashboard-card">
+            <div className="card-icon">👦</div>
+            <h3>My Children</h3>
+            <p>View your children's profiles</p>
+            <button className="card-btn parent-btn">View Children</button>
+          </div>
+
+          <div className="dashboard-card">
+            <div className="card-icon">📊</div>
+            <h3>Academic Performance</h3>
+            <p>Check exam results and grades</p>
+            <button className="card-btn parent-btn">View Results</button>
+          </div>
+
+          <div className="dashboard-card">
+            <div className="card-icon">📅</div>
+            <h3>Attendance</h3>
+            <p>Monitor attendance record</p>
+            <button className="card-btn parent-btn">View Attendance</button>
+          </div>
+
+          <div className="dashboard-card">
+            <div className="card-icon">📝</div>
+            <h3>Assignments</h3>
+            <p>View homework and assignments</p>
+            <button className="card-btn parent-btn">View Assignments</button>
+          </div>
+
+          <div className="dashboard-card">
+            <div className="card-icon">💬</div>
+            <h3>Teacher Feedback</h3>
+            <p>View messages from teachers</p>
+            <button className="card-btn parent-btn">View Messages</button>
+          </div>
+
+          <div className="dashboard-card">
+            <div className="card-icon">📢</div>
+            <h3>School Announcements</h3>
+            <p>Stay updated with school news</p>
+            <button className="card-btn parent-btn">View Announcements</button>
+          </div>
+        </div>
+
+        <div className="info-section">
+          <h3>👨‍👩‍👧‍👦 Parent Information</h3>
+          <div className="info-grid">
+            <div className="info-item">
+              <span className="info-label">Email:</span>
+              <span className="info-value">{user.email}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">NIC:</span>
+              <span className="info-value">{user.nic || 'N/A'}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">Language:</span>
+              <span className="info-value">{user.preferredLanguage}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ParentDashboard;
