@@ -52,7 +52,12 @@ function TeacherDashboard() {
             <div className="card-icon">✅</div>
             <h3>Attendance</h3>
             <p>Mark and manage student attendance</p>
-            <button className="card-btn teacher-btn">Take Attendance</button>
+            <button 
+              className="card-btn teacher-btn"
+              onClick={() => navigate('/teacher/attendance')}
+            >
+              Take Attendance
+            </button>
           </div>
 
           <div className="dashboard-card">
