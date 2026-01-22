@@ -13,6 +13,7 @@ import StudentAttendance from './pages/StudentAttendance';
 import TeacherAttendance from './pages/TeacherAttendance';
 import TeacherAssignments from './pages/TeacherAssignments';
 import StudentAssignments from './pages/StudentAssignments';
+import AssignmentSubmissions from './pages/AssignmentSubmissions';
 
 // Component to redirect to appropriate dashboard based on role
 function DashboardRedirect() {
@@ -120,6 +121,15 @@ function App() {
               element={
                 <PrivateRoute allowedRoles={['student']}>
                   <StudentAssignments />
+                </PrivateRoute>
+              } 
+            />
+
+            <Route 
+              path="/teacher/assignments/:assignmentId/submissions" 
+              element={
+                <PrivateRoute allowedRoles={['teacher', 'principal']}>
+                  <AssignmentSubmissions />
                 </PrivateRoute>
               } 
             />
