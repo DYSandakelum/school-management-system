@@ -11,6 +11,8 @@ import ParentDashboard from './pages/ParentDashboard';
 import './App.css';
 import StudentAttendance from './pages/StudentAttendance';
 import TeacherAttendance from './pages/TeacherAttendance';
+import TeacherAssignments from './pages/TeacherAssignments';
+import StudentAssignments from './pages/StudentAssignments';
 
 // Component to redirect to appropriate dashboard based on role
 function DashboardRedirect() {
@@ -99,6 +101,25 @@ function App() {
               element={
                 <PrivateRoute allowedRoles={['teacher', 'principal']}>
                   <TeacherAttendance />
+                </PrivateRoute>
+              } 
+            />
+
+            {/* Assignment Routes */}
+            <Route 
+              path="/teacher/assignments" 
+              element={
+                <PrivateRoute allowedRoles={['teacher', 'principal']}>
+                  <TeacherAssignments />
+                </PrivateRoute>
+              } 
+            />
+
+            <Route 
+              path="/student/assignments" 
+              element={
+                <PrivateRoute allowedRoles={['student']}>
+                  <StudentAssignments />
                 </PrivateRoute>
               } 
             />

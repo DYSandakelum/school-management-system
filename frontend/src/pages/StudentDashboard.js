@@ -41,12 +41,17 @@ function StudentDashboard() {
             <button className="card-btn">View Classes</button>
           </div>
 
-          <div className="dashboard-card">
-            <div className="card-icon">📝</div>
-            <h3>Assignments</h3>
-            <p>Check and submit your assignments</p>
-            <button className="card-btn">View Assignments</button>
-          </div>
+        <div className="dashboard-card">
+          <div className="card-icon">📝</div>
+          <h3>Assignments</h3>
+          <p>Check and submit your assignments</p>
+          <button 
+            className="card-btn"
+            onClick={() => navigate('/student/assignments')}
+          >
+            View Assignments
+          </button>
+        </div>
 
           <div className="dashboard-card">
             <div className="card-icon">📊</div>

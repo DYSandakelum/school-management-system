@@ -45,7 +45,12 @@ function TeacherDashboard() {
             <div className="card-icon">📝</div>
             <h3>Assignments</h3>
             <p>Create and grade assignments</p>
-            <button className="card-btn teacher-btn">Manage Assignments</button>
+            <button 
+              className="card-btn teacher-btn"
+              onClick={() => navigate('/teacher/assignments')}
+            >
+              Manage Assignments
+            </button>
           </div>
 
           <div className="dashboard-card">
